@@ -39,8 +39,9 @@ const copy = async () => {
   if (await isExist(targetFolderPath)) {
     throw new Error('FS operation failed');
   }
-  await fs.mkdir(targetFolderPath, { recursive: true });
-  await copyDir(sourceFolderPath, targetFolderPath);
+  // await fs.mkdir(targetFolderPath, { recursive: true });
+  // await copyDir(sourceFolderPath, targetFolderPath);
+  await Promise.all([fs.mkdir(targetFolderPath, { recursive: true }), copyDir(sourceFolderPath, targetFolderPath)]);
   console.log('Folder copied');
 };
 

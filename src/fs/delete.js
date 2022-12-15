@@ -15,14 +15,24 @@ const isExist = async (filepath) => {
   }
 };
 
+// const remove = async () => {
+//   const fileToRemove = path.join(__dirname, 'files', 'fileToRemove.txt');
+
+//   if (!(await isExist(fileToRemove))) {
+//     throw new Error('FS operation failed');
+//   }
+
+//   await fsPromises.rm(fileToRemove, { recursive: true, force: true });
+// };
+
 const remove = async () => {
   const fileToRemove = path.join(__dirname, 'files', 'fileToRemove.txt');
 
-  if (!(await isExist(fileToRemove))) {
+  try {
+    await fsPromises.rm(fileToRemove);
+  } catch (err) {
     throw new Error('FS operation failed');
   }
-
-  await fsPromises.rm(fileToRemove, { recursive: true, force: true });
 };
 
 await remove();

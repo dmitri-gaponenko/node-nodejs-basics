@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const write = async () => {
-  const stream = fs.createWriteStream(path.join(__dirname, 'files', 'fileToWrite.txt'), 'utf-8');
+  const stream = fs.createWriteStream(path.join(__dirname, 'files', 'fileToWrite.txt'), { encoding: 'utf-8', flags: 'a' } );
   process.stdin.pipe(stream);
   console.log(`Please enter text (press 'ctrl + c' to exit):\n`);
 };

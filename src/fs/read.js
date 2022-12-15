@@ -22,7 +22,7 @@ const read = async () => {
     throw new Error('FS operation failed');
   }
 
-  const contents = await fsPromises.readFile(filePath, { encoding: 'utf8' });
+  const contents = await fsPromises.readFile(filePath, { encoding: 'utf8' }); //try catch
   console.log(contents);
 };
 

@@ -1,13 +1,14 @@
 import { Transform } from 'stream';
+import { EOL } from 'os';
 
-const uppercase = new Transform({
+const transformStream = new Transform({
   transform(chunk, encoding, callback) {
-    callback(null, chunk.toString().split('').reverse().join('') + '\n');
+    callback(null, chunk.toString().split('').reverse().join('') + EOL);
   },
 });
 
 const transform = async () => {
-  process.stdin.pipe(uppercase).pipe(process.stdout);
+  process.stdin.pipe(transformStream).pipe(process.stdout);
   console.log(`Please enter text (press 'ctrl + c' to exit):\n`);
 };
 
